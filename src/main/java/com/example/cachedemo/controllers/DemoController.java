@@ -1,7 +1,5 @@
 package com.example.cachedemo.controllers;
 
-import javax.servlet.http.HttpServletRequest;
-
 import com.example.cachedemo.service.NumberService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,16 +14,16 @@ public class DemoController {
 
     private static final Logger logger = LoggerFactory.getLogger(DemoController.class);
 
-    @Autowired
-    private NumberService numberService;
+    private final NumberService numberService;
+
+    public DemoController(NumberService numberService) {
+        this.numberService = numberService;
+    }
 
     @GetMapping( path = "/number/square/{number}",
             produces = MediaType.APPLICATION_JSON_VALUE )
     public String test(
-            @PathVariable( value = "number",
-                    required = true )
-                    Integer number,
-            HttpServletRequest request) {
+            @PathVariable( value = "number", required = true ) Integer number) throws InterruptedException {
         logger.info("Received request to get square of:{}", number);
         Integer value = numberService.getValue(number);
         logger.info("Return response after getting the square of:{} is:{}", number, value);
