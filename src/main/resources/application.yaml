@@ -1,2 +1,10 @@
 server:
   port: 8001
+  ssl:
+    enabled: true
+    key-alias: dhanushka
+    key-store: classpath:dhanushka-cert.jks
+    key-store-password: dhanushka
+    key-store-type: JKS
+
+#keytool -genkey -alias dhanushka -storetype JKS -keyalg RSA -keysize 2048 -validity 365 -keystore dhanushka-cert.jks
