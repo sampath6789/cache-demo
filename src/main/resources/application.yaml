@@ -8,3 +8,9 @@ server:
     key-store-type: JKS
 
 #keytool -genkey -alias dhanushka -storetype JKS -keyalg RSA -keysize 2048 -validity 365 -keystore dhanushka-cert.jks
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
